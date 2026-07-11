@@ -26,7 +26,7 @@ setTimeout(() => {
   }
 }, 4000);
 
-/* ---------- Typewriter hero title ---------- */
+/* ---------- Typewriter hero title (loops forever) ---------- */
 let typewriterStarted = false;
 function startTypewriter() {
   if (typewriterStarted) return;
@@ -35,14 +35,28 @@ function startTypewriter() {
   const el = document.getElementById('typewriter');
   if (!el) return;
   const text = el.getAttribute('data-text') || '';
+  if (!text) return;
+
+  const TYPE_SPEED = 42;
+  const DELETE_SPEED = 18;
+  const HOLD_AFTER_TYPE = 2800;
+  const HOLD_AFTER_DELETE = 300;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   let i = 0;
   let currentWord = null;
+  // Explicit stack of appended nodes (letter spans or space text nodes),
+  // so deleting just pops the last entry instead of re-walking the DOM.
+  let entries = [];
 
-  function type() {
+  function typeStep() {
     if (i < text.length) {
       const ch = text[i];
+      let node;
       if (ch === ' ') {
-        el.appendChild(document.createTextNode(' '));
+        node = document.createTextNode(' ');
+        el.appendChild(node);
         currentWord = null;
       } else {
         if (!currentWord) {
@@ -50,46 +64,161 @@ function startTypewriter() {
           currentWord.className = 'word';
           el.appendChild(currentWord);
         }
-        const span = document.createElement('span');
-        span.className = 'letter';
-        span.textContent = ch;
-        currentWord.appendChild(span);
+        node = document.createElement('span');
+        node.className = 'letter';
+        node.textContent = ch;
+        currentWord.appendChild(node);
       }
+      entries.push(node);
       i++;
-      setTimeout(type, 42);
-    } else {
-      el.classList.add('is-done');
+      if (reduceMotion) {
+        typeStep();
+      } else {
+        setTimeout(typeStep, TYPE_SPEED);
+      }
+    } else if (!reduceMotion) {
+      setTimeout(deleteStep, HOLD_AFTER_TYPE);
     }
   }
-  type();
+
+  function deleteStep() {
+    const node = entries.pop();
+    if (node) {
+      const parent = node.parentNode;
+      if (parent) {
+        parent.removeChild(node);
+        if (parent !== el && parent.childNodes.length === 0) {
+          el.removeChild(parent);
+        }
+      }
+      setTimeout(deleteStep, DELETE_SPEED);
+    } else {
+      i = 0;
+      currentWord = null;
+      setTimeout(typeStep, HOLD_AFTER_DELETE);
+    }
+  }
+
+  typeStep();
 }
 
-/* ---------- Hero background particles ---------- */
-(function spawnHeroParticles() {
-  const container = document.getElementById('heroParticles');
-  if (!container) return;
-  const colors = ['rgba(255,255,255,0.55)', 'rgba(245,130,31,0.55)', 'rgba(42,172,209,0.55)'];
-  const count = window.innerWidth < 700 ? 16 : 30;
+/* ---------- Hero particle network ---------- */
+(function heroParticleNetwork() {
+  const wrap = document.getElementById('heroParticles');
+  const hero = document.querySelector('.hero');
+  if (!wrap || !hero) return;
 
-  for (let n = 0; n < count; n++) {
-    const p = document.createElement('span');
-    p.className = 'particle';
-    const size = (Math.random() * 4 + 2).toFixed(1);
-    const left = (Math.random() * 100).toFixed(1);
-    const duration = (Math.random() * 10 + 9).toFixed(1);
-    const delay = (Math.random() * -20).toFixed(1);
-    const drift = (Math.random() * 80 - 40).toFixed(0);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    p.style.width = size + 'px';
-    p.style.height = size + 'px';
-    p.style.left = left + '%';
-    p.style.background = colors[n % colors.length];
-    p.style.animationDuration = duration + 's';
-    p.style.animationDelay = delay + 's';
-    p.style.setProperty('--drift', drift + 'px');
+  const canvas = document.createElement('canvas');
+  wrap.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
 
-    container.appendChild(p);
+  const colors = ['255,255,255', '245,130,31', '42,172,209'];
+  const linkDist = 130;
+  const mouse = { x: 0, y: 0, active: false };
+
+  let dpr, w, h, particles, rafId, resizeTimer;
+
+  function particleCount() {
+    const density = w * h / 12000;
+    return Math.round(Math.min(170, Math.max(70, density)));
   }
+
+  function build() {
+    const n = particleCount();
+    particles = Array.from({ length: n }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.7 + 0.6,
+      c: colors[Math.floor(Math.random() * colors.length)]
+    }));
+  }
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = hero.clientWidth;
+    h = hero.clientHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    build();
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, w, h);
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (mouse.active) {
+        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 16000) {
+          const d = Math.sqrt(d2) || 1;
+          const f = (128 - d) / 128;
+          p.x += (dx / d) * f * 1.1;
+          p.y += (dy / d) * f * 1.1;
+        }
+      }
+
+      if (p.x < -10) p.x = w + 10; else if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10; else if (p.y > h + 10) p.y = -10;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.c},0.6)`;
+      ctx.fill();
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < linkDist) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(255,255,255,${0.16 * (1 - dist / linkDist)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+
+    rafId = requestAnimationFrame(step);
+  }
+
+  hero.addEventListener('pointermove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+    mouse.active = true;
+  });
+  hero.addEventListener('pointerleave', () => { mouse.active = false; });
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 200);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(rafId);
+    } else {
+      rafId = requestAnimationFrame(step);
+    }
+  });
+
+  resize();
+  rafId = requestAnimationFrame(step);
 })();
 
 /* ---------- Button ripple feedback ---------- */
@@ -140,14 +269,11 @@ navLinks.querySelectorAll('a').forEach((link) => {
   });
 });
 
-/* ---------- Scroll reveal ---------- */
+/* ---------- Scroll reveal (replays in + out on every pass) ---------- */
 const revealItems = document.querySelectorAll('[data-reveal]');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      revealObserver.unobserve(entry.target);
-    }
+    entry.target.classList.toggle('in-view', entry.isIntersecting);
   });
 }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
