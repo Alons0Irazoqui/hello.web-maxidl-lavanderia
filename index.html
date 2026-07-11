@@ -24,10 +24,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+<!-- ===== SVG ICON SPRITE ===== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="icon-whatsapp" viewBox="0 0 32 32"><path fill="currentColor" d="M16.02 3C9.4 3 4 8.37 4 15c0 2.36.68 4.55 1.86 6.4L4 29l7.8-1.83A11.9 11.9 0 0 0 16.02 27C22.65 27 28 21.63 28 15S22.65 3 16.02 3zm0 21.75c-1.98 0-3.83-.55-5.4-1.5l-.39-.23-4.63 1.09 1.11-4.5-.25-.4a9.63 9.63 0 0 1-1.5-5.2c0-5.35 4.36-9.7 9.72-9.7 5.35 0 9.7 4.35 9.7 9.7 0 5.36-4.35 9.74-9.7 9.74zm5.34-7.28c-.29-.15-1.73-.85-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.14-.17.2-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.71-1.6-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.43 0 1.43 1.05 2.82 1.19 3.01.15.2 2.06 3.14 5 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.12.56-.08 1.73-.71 1.97-1.39.24-.68.24-1.27.17-1.39-.07-.12-.26-.2-.55-.34z"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="icon-truck" viewBox="0 0 24 24"><path d="M2 7h12v9H2V7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 10h4l4 3.4V16h-8v-6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="1.8" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="18" r="1.8" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="icon-shirt" viewBox="0 0 24 24"><path d="M8 3 4 6l1.5 3L8 8v13h8V8l2.5 1L20 6l-4-3-1 1.6a3.2 3.2 0 0 1-6 0L8 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-building" viewBox="0 0 24 24"><path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 10h4a1 1 0 0 1 1 1v10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7.5 8h2M7.5 11h2M7.5 14h2M7.5 17h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.4-3 8-7 9-4-1-7-4.6-7-9V6l7-3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-map-route" viewBox="0 0 24 24"><path d="M4 20l4-16 4 12 4-12 4 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
 
 <!-- ===== LOADER ===== -->
 <div id="loader" aria-hidden="true">
@@ -58,14 +74,14 @@
       <a href="#nosotros" class="nav-link">Nosotros</a>
       <a href="#porque-elegirnos" class="nav-link">Por qué elegirnos</a>
       <a href="https://wa.me/527731233667?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20lavander%C3%ADa." class="btn btn-primary btn-nav" target="_blank" rel="noopener">
-        <i class="icon fa-brands fa-whatsapp" style="font-size:18px"></i>
+        <svg class="icon" width="18" height="18"><use href="#icon-whatsapp"/></svg>
         Escribir por WhatsApp
       </a>
     </nav>
 
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
-      <i class="icon icon-open fa-solid fa-bars" style="font-size:26px"></i>
-      <i class="icon icon-close fa-solid fa-xmark" style="font-size:26px"></i>
+      <svg class="icon icon-open" width="26" height="26"><use href="#icon-menu"/></svg>
+      <svg class="icon icon-close" width="26" height="26"><use href="#icon-close"/></svg>
     </button>
   </div>
 </header>
@@ -97,21 +113,21 @@
 
       <div class="hero-actions" data-reveal data-reveal-delay="2">
         <a href="https://wa.me/527731233667?text=Hola%20MAXI%20DL%2C%20quiero%20solicitar%20un%20servicio%20de%20lavado%20y%20secado." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-          <i class="icon fa-brands fa-whatsapp" style="font-size:20px"></i>
+          <svg class="icon" width="20" height="20"><use href="#icon-whatsapp"/></svg>
           Solicitar servicio por WhatsApp
         </a>
         <a href="#sucursales" class="btn btn-ghost-light btn-lg">Ver nuestras sucursales</a>
       </div>
 
       <ul class="hero-stats" data-reveal data-reveal-delay="3">
-        <li><i class="icon fa-solid fa-building" style="font-size:20px"></i> 3 sucursales en El Marqués</li>
-        <li><i class="icon fa-solid fa-clock" style="font-size:20px"></i> Entrega en 3 horas</li>
-        <li><i class="icon fa-solid fa-truck" style="font-size:20px"></i> Servicio a domicilio</li>
+        <li><svg class="icon" width="20" height="20"><use href="#icon-building"/></svg> 3 sucursales en El Marqués</li>
+        <li><svg class="icon" width="20" height="20"><use href="#icon-clock"/></svg> Entrega en 3 horas</li>
+        <li><svg class="icon" width="20" height="20"><use href="#icon-truck"/></svg> Servicio a domicilio</li>
       </ul>
     </div>
 
     <a href="#nosotros" class="hero-scroll" aria-label="Bajar a la siguiente sección">
-      <i class="icon fa-solid fa-chevron-down" style="font-size:22px"></i>
+      <svg class="icon" width="22" height="22"><use href="#icon-chevron-down"/></svg>
     </a>
   </section>
 
@@ -126,25 +142,25 @@
 
       <div class="cards-grid">
         <article class="service-card" data-reveal>
-          <div class="service-icon"><i class="icon fa-solid fa-shirt" style="font-size:28px"></i></div>
+          <div class="service-icon"><svg class="icon" width="28" height="28"><use href="#icon-shirt"/></svg></div>
           <h3>Lavado y Secado Profesional</h3>
           <p>Equipos de alto rendimiento y procesos cuidados para que cada prenda salga impecable, suave y perfectamente seca, lista para usarse.</p>
         </article>
 
         <article class="service-card" data-reveal data-reveal-delay="1">
-          <div class="service-icon"><i class="icon fa-solid fa-clock" style="font-size:28px"></i></div>
+          <div class="service-icon"><svg class="icon" width="28" height="28"><use href="#icon-clock"/></svg></div>
           <h3>Entrega en 3 Horas</h3>
           <p>En nuestra sucursal Chichimequillas llevamos la rapidez al siguiente nivel: deja tu ropa en la mañana y recógela lista en tan solo 3 horas.</p>
         </article>
 
         <article class="service-card" data-reveal data-reveal-delay="2">
-          <div class="service-icon"><i class="icon fa-solid fa-truck" style="font-size:28px"></i></div>
+          <div class="service-icon"><svg class="icon" width="28" height="28"><use href="#icon-truck"/></svg></div>
           <h3>Servicio a Domicilio</h3>
           <p>Diseñado para hoteles, restaurantes y empresas: recogemos y entregamos tu ropa de trabajo, blancos y textiles directamente en tus instalaciones.</p>
         </article>
 
         <article class="service-card" data-reveal data-reveal-delay="3">
-          <div class="service-icon"><i class="icon fa-solid fa-check" style="font-size:28px"></i></div>
+          <div class="service-icon"><svg class="icon" width="28" height="28"><use href="#icon-check"/></svg></div>
           <h3>Artículos Especiales</h3>
           <p>Algunos de los artículos que lavamos, además de tu ropa de siempre:</p>
           <ul class="chip-list">
@@ -177,18 +193,18 @@
           <div class="branch-row-content" data-reveal="right" data-reveal-delay="1">
             <span class="branch-row-tag">Sucursal 01</span>
             <h3>Bernal</h3>
-            <p class="branch-line"><i class="icon fa-solid fa-location-dot" style="font-size:18px"></i> Carretera a Bernal Km 1, Col. El Paraíso, El Marqués, Qro.</p>
-            <p class="branch-line"><i class="icon fa-solid fa-clock" style="font-size:18px"></i> 6:30 a.m. – 8:00 p.m.</p>
+            <p class="branch-line"><svg class="icon" width="18" height="18"><use href="#icon-pin"/></svg> Carretera a Bernal Km 1, Col. El Paraíso, El Marqués, Qro.</p>
+            <p class="branch-line"><svg class="icon" width="18" height="18"><use href="#icon-clock"/></svg> 6:30 a.m. – 8:00 p.m.</p>
             <div class="branch-badges">
-              <span class="badge"><i class="icon fa-solid fa-truck" style="font-size:14px"></i> Servicio a domicilio</span>
-              <span class="badge"><i class="icon fa-solid fa-shirt" style="font-size:14px"></i> Lavado y secado</span>
+              <span class="badge"><svg class="icon" width="14" height="14"><use href="#icon-truck"/></svg> Servicio a domicilio</span>
+              <span class="badge"><svg class="icon" width="14" height="14"><use href="#icon-shirt"/></svg> Lavado y secado</span>
             </div>
             <div class="branch-actions">
               <a href="https://www.google.com/maps/search/?api=1&query=Carretera%20a%20Bernal%20Km%201%2C%20Col.%20El%20Para%C3%ADso%2C%20El%20Marqu%C3%A9s%2C%20Qro." class="btn btn-outline" target="_blank" rel="noopener">
-                <i class="icon fa-solid fa-route" style="font-size:16px"></i> Cómo llegar
+                <svg class="icon" width="16" height="16"><use href="#icon-map-route"/></svg> Cómo llegar
               </a>
               <a href="https://wa.me/527731233667?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20sucursal%20Bernal." class="btn btn-primary-outline" target="_blank" rel="noopener">
-                <i class="icon fa-brands fa-whatsapp" style="font-size:16px"></i> WhatsApp
+                <svg class="icon" width="16" height="16"><use href="#icon-whatsapp"/></svg> WhatsApp
               </a>
             </div>
           </div>
@@ -205,18 +221,18 @@
           <div class="branch-row-content" data-reveal="left" data-reveal-delay="1">
             <span class="branch-row-tag">Sucursal 02</span>
             <h3>Chichimequillas</h3>
-            <p class="branch-line"><i class="icon fa-solid fa-location-dot" style="font-size:18px"></i> Carretera Chichimequillas s/n, Col. Coyotillos, El Marqués, Qro.</p>
-            <p class="branch-line"><i class="icon fa-solid fa-clock" style="font-size:18px"></i> 6:00 a.m. – 6:30 p.m.</p>
+            <p class="branch-line"><svg class="icon" width="18" height="18"><use href="#icon-pin"/></svg> Carretera Chichimequillas s/n, Col. Coyotillos, El Marqués, Qro.</p>
+            <p class="branch-line"><svg class="icon" width="18" height="18"><use href="#icon-clock"/></svg> 6:00 a.m. – 6:30 p.m.</p>
             <div class="branch-badges">
-              <span class="badge badge-accent"><i class="icon fa-solid fa-clock" style="font-size:14px"></i> Entrega en 3 horas</span>
-              <span class="badge"><i class="icon fa-solid fa-shirt" style="font-size:14px"></i> Lavado y secado</span>
+              <span class="badge badge-accent"><svg class="icon" width="14" height="14"><use href="#icon-clock"/></svg> Entrega en 3 horas</span>
+              <span class="badge"><svg class="icon" width="14" height="14"><use href="#icon-shirt"/></svg> Lavado y secado</span>
             </div>
             <div class="branch-actions">
               <a href="https://www.google.com/maps/search/?api=1&query=Carretera%20Chichimequillas%20s/n%2C%20Col.%20Coyotillos%2C%20El%20Marqu%C3%A9s%2C%20Qro." class="btn btn-outline" target="_blank" rel="noopener">
-                <i class="icon fa-solid fa-route" style="font-size:16px"></i> Cómo llegar
+                <svg class="icon" width="16" height="16"><use href="#icon-map-route"/></svg> Cómo llegar
               </a>
               <a href="https://wa.me/527731233667?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20sucursal%20Chichimequillas%20y%20la%20entrega%20en%203%20horas." class="btn btn-primary-outline" target="_blank" rel="noopener">
-                <i class="icon fa-brands fa-whatsapp" style="font-size:16px"></i> WhatsApp
+                <svg class="icon" width="16" height="16"><use href="#icon-whatsapp"/></svg> WhatsApp
               </a>
             </div>
           </div>
@@ -232,17 +248,17 @@
           <div class="branch-row-content" data-reveal="right" data-reveal-delay="1">
             <span class="branch-row-tag">Sucursal 03</span>
             <h3>Paseos del Marqués</h3>
-            <p class="branch-line"><i class="icon fa-solid fa-location-dot" style="font-size:18px"></i> Av. Paseos del Marqués, Fracc. Paseos del Marqués, El Marqués, Qro.</p>
-            <p class="branch-line"><i class="icon fa-solid fa-clock" style="font-size:18px"></i> Lunes a sábado, 8:00 a.m. – 8:00 p.m. <span class="closed-tag">Domingo cerrado</span></p>
+            <p class="branch-line"><svg class="icon" width="18" height="18"><use href="#icon-pin"/></svg> Av. Paseos del Marqués, Fracc. Paseos del Marqués, El Marqués, Qro.</p>
+            <p class="branch-line"><svg class="icon" width="18" height="18"><use href="#icon-clock"/></svg> Lunes a sábado, 8:00 a.m. – 8:00 p.m. <span class="closed-tag">Domingo cerrado</span></p>
             <div class="branch-badges">
-              <span class="badge"><i class="icon fa-solid fa-shirt" style="font-size:14px"></i> Lavado y secado</span>
+              <span class="badge"><svg class="icon" width="14" height="14"><use href="#icon-shirt"/></svg> Lavado y secado</span>
             </div>
             <div class="branch-actions">
               <a href="https://www.google.com/maps/search/?api=1&query=Av.%20Paseos%20del%20Marqu%C3%A9s%2C%20Fracc.%20Paseos%20del%20Marqu%C3%A9s%2C%20El%20Marqu%C3%A9s%2C%20Qro." class="btn btn-outline" target="_blank" rel="noopener">
-                <i class="icon fa-solid fa-route" style="font-size:16px"></i> Cómo llegar
+                <svg class="icon" width="16" height="16"><use href="#icon-map-route"/></svg> Cómo llegar
               </a>
               <a href="https://wa.me/527731233667?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20sucursal%20Paseos%20del%20Marqu%C3%A9s." class="btn btn-primary-outline" target="_blank" rel="noopener">
-                <i class="icon fa-brands fa-whatsapp" style="font-size:16px"></i> WhatsApp
+                <svg class="icon" width="16" height="16"><use href="#icon-whatsapp"/></svg> WhatsApp
               </a>
             </div>
           </div>
@@ -256,7 +272,7 @@
   <section class="section" id="nosotros">
     <div class="container">
       <div class="grid-2 align-center">
-        <div data-reveal="left">
+        <div data-reveal>
           <p class="eyebrow">Quiénes somos</p>
           <h2 class="section-title">Cuidamos tu ropa como si fuera nuestra</h2>
           <p class="section-text">
@@ -280,10 +296,10 @@
           </div>
         </div>
 
-        <div class="about-media" data-reveal="right">
-          <div class="about-media-bg" style="background-image:url('imagenes/sucursal-1.jpg')" role="img" aria-label="Fachada e instalaciones de MAXI DL Lavandería, sucursal Bernal, en El Marqués, Querétaro"></div>
+        <div class="about-media" data-reveal data-reveal-delay="1">
+          <div class="about-media-bg" style="background-image:url('imagenes/sucursal-3.jpg')" role="img" aria-label="Fachada e instalaciones de MAXI DL Lavandería, sucursal Paseos del Marqués, en El Marqués, Querétaro"></div>
           <div class="about-media-badge">
-            <i class="icon fa-solid fa-shield-halved" style="font-size:26px"></i>
+            <svg class="icon" width="26" height="26"><use href="#icon-shield"/></svg>
             <div>
               <strong>Calidad garantizada</strong>
               <span>en cada entrega</span>
@@ -304,32 +320,32 @@
 
       <div class="features-grid">
         <div class="feature-item" data-reveal>
-          <i class="icon fa-solid fa-clock" style="font-size:26px"></i>
+          <svg class="icon" width="26" height="26"><use href="#icon-clock"/></svg>
           <h3>Rapidez real</h3>
           <p>Entrega en 3 horas disponible, para que no reorganices tu semana por una carga de ropa.</p>
         </div>
         <div class="feature-item" data-reveal data-reveal-delay="1">
-          <i class="icon fa-solid fa-building" style="font-size:26px"></i>
+          <svg class="icon" width="26" height="26"><use href="#icon-building"/></svg>
           <h3>Tres sucursales estratégicas</h3>
           <p>Bernal, Chichimequillas y Paseos del Marqués: siempre hay una sucursal cerca de ti.</p>
         </div>
         <div class="feature-item" data-reveal data-reveal-delay="2">
-          <i class="icon fa-solid fa-truck" style="font-size:26px"></i>
+          <svg class="icon" width="26" height="26"><use href="#icon-truck"/></svg>
           <h3>Atención empresarial</h3>
           <p>Servicio a domicilio pensado para hoteles, restaurantes y empresas con altos volúmenes de ropa.</p>
         </div>
         <div class="feature-item" data-reveal data-reveal-delay="3">
-          <i class="icon fa-solid fa-shirt" style="font-size:26px"></i>
+          <svg class="icon" width="26" height="26"><use href="#icon-shirt"/></svg>
           <h3>Cuidado experto</h3>
           <p>Desde playeras hasta edredones, cubrecolchones y peluches: sabemos tratar cada tipo de tela.</p>
         </div>
         <div class="feature-item" data-reveal data-reveal-delay="4">
-          <i class="icon fa-solid fa-shield-halved" style="font-size:26px"></i>
+          <svg class="icon" width="26" height="26"><use href="#icon-shield"/></svg>
           <h3>Horarios amplios</h3>
           <p>Abrimos temprano y cerramos tarde para adaptarnos a tu rutina diaria.</p>
         </div>
         <div class="feature-item" data-reveal data-reveal-delay="5">
-          <i class="icon fa-brands fa-whatsapp" style="font-size:26px"></i>
+          <svg class="icon" width="26" height="26"><use href="#icon-whatsapp"/></svg>
           <h3>Contacto directo</h3>
           <p>Cotiza, pregunta y da seguimiento a tu servicio por WhatsApp, sin filas ni esperas.</p>
         </div>
@@ -343,7 +359,7 @@
       <h2>¿Listo para dejar de preocuparte por la lavada?</h2>
       <p>Escríbenos por WhatsApp y te ayudamos a elegir la sucursal y el servicio que mejor se adapte a ti.</p>
       <a href="https://wa.me/527731233667?text=Hola%20MAXI%20DL%2C%20quiero%20solicitar%20un%20servicio%20de%20lavado%20y%20secado." class="btn btn-primary btn-xl" target="_blank" rel="noopener">
-        <i class="icon fa-brands fa-whatsapp" style="font-size:22px"></i>
+        <svg class="icon" width="22" height="22"><use href="#icon-whatsapp"/></svg>
         Escribir por WhatsApp
       </a>
       <span class="cta-final-number">773 123 36 67</span>
@@ -386,7 +402,7 @@
     <div class="footer-col">
       <h4>Contacto</h4>
       <a href="https://wa.me/527731233667?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20lavander%C3%ADa." class="btn btn-primary" target="_blank" rel="noopener">
-        <i class="icon fa-brands fa-whatsapp" style="font-size:18px"></i>
+        <svg class="icon" width="18" height="18"><use href="#icon-whatsapp"/></svg>
         773 123 36 67
       </a>
     </div>
@@ -401,11 +417,11 @@
 
 <!-- ===== FLOATING ACTIONS ===== -->
 <a href="https://wa.me/527731233667?text=Hola%20MAXI%20DL%2C%20quiero%20solicitar%20un%20servicio%20de%20lavado%20y%20secado." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
-  <i class="icon fa-brands fa-whatsapp" style="font-size:30px"></i>
+  <svg class="icon" width="30" height="30"><use href="#icon-whatsapp"/></svg>
 </a>
 
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
-  <i class="icon fa-solid fa-arrow-up" style="font-size:20px"></i>
+  <svg class="icon" width="20" height="20"><use href="#icon-arrow-up"/></svg>
 </button>
 
 <script src="js/script.js"></script>
